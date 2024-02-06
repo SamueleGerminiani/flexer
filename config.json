@@ -1,0 +1,75 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+"projet-root" : "/home/sam/flexer/",
+"compilation-script" : "/home/sam/flexer/compilation.sh",
+"run-script" : "/home/sam/flexer/run.sh",
+"file-types" : "*.cc,*.cpp,*.c,*.h,*.hpp",
+"server-ip" : "samger.mynetgear.com",
+"port" : "6000"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -7,9 +7,6 @@
 
 // command line config
 namespace clc {
-extern std::string inputDir;
-extern std::string inputFile;
-extern std::vector<std::string> extensions;
 extern bool silent;
 ///--wilent
 extern bool wsilent;
@@ -17,12 +14,14 @@ extern bool wsilent;
 extern bool isilent;
 ///--psilent
 extern bool psilent;
+
+extern std::string projectRoot;
+extern std::vector<std::string> include;
+extern std::string serverIp;
+extern size_t port;
+extern bool client;
+extern bool server;
 }  // namespace clc
 
-// @start-flexer[1.2]
 // harm stat
-namespace hs {
-/// The name of the current "execution", --name
-extern std::string name;
-}  // namespace hs
-// @end-flexer
+namespace hs {}  // namespace hs

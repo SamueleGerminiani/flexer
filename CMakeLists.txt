@@ -103,13 +103,16 @@ link_libraries(progresscpp)
 
 ### MAIN EXECUTABLE ###############################################
 
-
 #Command line parser
 add_subdirectory(src/commandLineParser)
 
+SET(NAME flexer)
+add_executable(${NAME} src/main.cc)
+target_link_libraries(${NAME} PUBLIC text stdc++fs commandLineParser)
 
-########Flexer#########################################
-add_subdirectory(src/flexer)
+
+########Text#########################################
+add_subdirectory(src/text)
 
 ### TESTS & EXAMPLES ##################################
 enable_testing()

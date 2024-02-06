@@ -17,10 +17,12 @@ cxxopts::ParseResult parseFlexer(int argc, char *argv[]) {
 
     // clang-format off
 options.add_options()
-  ("dir", "Directory to search for files", cxxopts::value<std::string>())
-  ("file", "File to search for flexer instances", cxxopts::value<std::string>())
-  ("ss", "List suffixes to search for", cxxopts::value<std::vector<std::string>>())
-  ("silent", "Silent mode")
+  ("project-root", "Directory containing the sources", cxxopts::value<std::string>())
+  ("include", "Comma separated list (without spaces) of extensions to search for files (example .cc .hh)", cxxopts::value<std::vector<std::string>>())
+  ("server-ip", "IP of the server hosting the flexer service", cxxopts::value<std::string>())
+  ("port", "Port of the server hosting the flexer service", cxxopts::value<size_t>())
+  ("client", "To specify that flexer is running in client mode")
+  ("server", "To specify that flexer is running in server mode")
   ("help", "Show options");
     // clang-format on
 
@@ -31,9 +33,13 @@ options.add_options()
       exit(0);
     }
 
-    if ((!result.count("dir") && !result.count("file")) ||
-        (result.count("dir") && !result.count("ss"))) {
-      std::cout << "Usage:\n";
+    if (!result.count("project-root") ||
+        (!result.count("server") && !result.count("client")) ||
+        !result.count("port") || !result.count("server-ip") ||
+        !result.count("include")) {
+      std::cout << "Usage: flexer --project-root <path> --server-ip <ip> "
+                   "--port <port> --include <extensions> --server|--client"
+                << std::endl;
       exit(0);
     }
 

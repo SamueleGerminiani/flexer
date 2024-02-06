@@ -3,17 +3,18 @@
 #include <limits>
 #include <thread>
 
-// @start-flexer[1.1]
 namespace clc {
 bool silent = false;
 bool wsilent = false;
 bool isilent = false;
 bool psilent = false;
-std::string inputDir;
-std::string inputFile;
-std::vector<std::string> extensions;
+std::string projectRoot;
+std::vector<std::string> include;
+std::string serverIp;
+size_t port;
+bool client;
+bool server;
 }  // namespace clc
-// @end-flexer
 
 namespace hs {
 std::string name = "";

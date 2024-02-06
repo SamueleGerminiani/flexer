@@ -260,54 +260,5 @@ generateSubInstances(
   return resultMap;
 }
 
-namespace fs = std::filesystem;
-
-inline std::vector<std::string> findFilesWithExtensions(
-    const std::string& directoryPath,
-    const std::vector<std::string>& extensions) {
-  std::vector<std::string> matchingFilePaths;
-
-  try {
-    for (const auto& entry : fs::recursive_directory_iterator(directoryPath)) {
-      if (fs::is_regular_file(entry.path())) {
-        std::string fileSuffix = entry.path().extension().string();
-        // Convert to lowercase for case-insensitive matching
-        std::transform(fileSuffix.begin(), fileSuffix.end(), fileSuffix.begin(),
-                       ::tolower);
-
-        for (const auto& extension : extensions) {
-          if (fileSuffix == extension) {
-            matchingFilePaths.push_back(entry.path().string());
-            break;  // Move to the next file after a match is found
-          }
-        }
-      }
-    }
-  } catch (const std::exception& e) {
-    std::cerr << "Error: " << e.what() << std::endl;
-  }
-
-  return matchingFilePaths;
-}
-inline std::vector<std::string> findFiles() {
-  std::vector<std::string> inFiles;
-  if (!clc::extensions.empty()) {
-    inFiles = findFilesWithExtensions(clc::inputDir, clc::extensions);
-    messageErrorIf(inFiles.empty(),
-                   "No files found in the directory: " + clc::inputDir);
-
-  } else if (!clc::inputFile.empty()) {
-    inFiles.push_back(clc::inputFile);
-  } else {
-    messageError("No input files or directories provided");
-  }
-
-  std::cout << "Elaborating the following files: "
-            << "\n";
-  for (const auto& file : inFiles) {
-    std::cout << "\t" << file << "\n";
-  }
-  return inFiles;
-}
 
 }  // namespace flexer
