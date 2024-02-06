@@ -3,15 +3,18 @@
 #include <limits>
 #include <thread>
 
+// @start-flexer[1.1]
 namespace clc {
-
 bool silent = false;
 bool wsilent = false;
 bool isilent = false;
 bool psilent = false;
-} // namespace clc
+std::string inputDir;
+std::string inputFile;
+std::vector<std::string> extensions;
+}  // namespace clc
+// @end-flexer
 
-// harm stat
 namespace hs {
 std::string name = "";
-} // namespace hs
+}  // namespace hs

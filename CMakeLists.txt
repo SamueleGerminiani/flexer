@@ -103,26 +103,13 @@ link_libraries(progresscpp)
 
 ### MAIN EXECUTABLE ###############################################
 
-SET(NAME flexer)
-add_executable(${NAME} src/main.cc)
 
 #Command line parser
 add_subdirectory(src/commandLineParser)
-target_link_libraries(${NAME} commandLineParser)
-
-#c++17 filesystem
-target_link_libraries(${NAME} stdc++fs)
 
 
 ########Flexer#########################################
 add_subdirectory(src/flexer)
-#target_link_libraries(${NAME} flexer)
-
-#dea 
-if (DEA)
-    message("Enabling DEA...")
-    add_subdirectory(src/dea)
-endif()
 
 ### TESTS & EXAMPLES ##################################
 enable_testing()
@@ -130,12 +117,12 @@ include (CTest)
 add_subdirectory(tests)
 add_subdirectory(examples)
 
-######### INSTALLATION #################################
-set(CMAKE_INSTALL_MESSAGE NEVER)
-
-INSTALL(TARGETS flexer 
-    RUNTIME DESTINATION flexer/bin
-    LIBRARY DESTINATION flexer/lib
-    ARCHIVE DESTINATION flexer/lib
-    )
+########## INSTALLATION #################################
+#set(CMAKE_INSTALL_MESSAGE NEVER)
+#
+#INSTALL(TARGETS flexer 
+#    RUNTIME DESTINATION flexer/bin
+#    LIBRARY DESTINATION flexer/lib
+#    ARCHIVE DESTINATION flexer/lib
+#    )
 

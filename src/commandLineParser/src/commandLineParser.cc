@@ -17,7 +17,11 @@ cxxopts::ParseResult parseFlexer(int argc, char *argv[]) {
 
     // clang-format off
 options.add_options()
-("help", "Show options");
+  ("dir", "Directory to search for files", cxxopts::value<std::string>())
+  ("file", "File to search for flexer instances", cxxopts::value<std::string>())
+  ("ss", "List suffixes to search for", cxxopts::value<std::vector<std::string>>())
+  ("silent", "Silent mode")
+  ("help", "Show options");
     // clang-format on
 
     auto result = options.parse(argc, argv);
@@ -26,7 +30,9 @@ options.add_options()
       std::cout << options.help({"", "Group"}) << std::endl;
       exit(0);
     }
-    if (false) {
+
+    if ((!result.count("dir") && !result.count("file")) ||
+        (result.count("dir") && !result.count("ss"))) {
       std::cout << "Usage:\n";
       exit(0);
     }

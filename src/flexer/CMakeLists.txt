@@ -1,23 +1,6 @@
 SET(NAME flexer)
-project(${NAME})
+add_library(${NAME} INTERFACE)
+target_include_directories(${NAME} INTERFACE include/ )
 
-
-
-#############################################
-# Sources.
-#############################################
-
-#SET(FLEXER_SRC )
-
-#############################################
-# Targets.
-#############################################
-#add_library(${NAME} ${MINER_SRC})
-#target_include_directories(flexer PUBLIC )
-
-#add_subdirectory()
-
-#target_link_libraries(${NAME} )
-
-
-
+add_executable(client src/client.cc)
+target_link_libraries(client PUBLIC flexer stdc++fs commandLineParser)
